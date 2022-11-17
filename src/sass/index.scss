@@ -1,26 +1,79 @@
+.search-form {
+  background-color: rgb(91, 116, 205);
 
-.search-form{
-    background-color: rgb(91, 116, 205);
+  display: flex;
+  justify-content: center;
 
-    display: flex;
+  padding: 20px;
+}
+
+input {
+  font-size: 20px;
+
+  width: 300px;
+  height: 30px;
+
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+button {
+  font-size: 20px;
+
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+.gallery {
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
+  gap: 10px;
+
+  padding-top: 40px;
+}
+
+.photo-card {
+  border: solid gray;
+  box-shadow: 3px 5px 2px 1px rgba(90, 46, 193, 0.29);
+
+  flex-basis: 20%;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+
+    object-fit: cover;
+}
+
+.info {
+    flex-grow: 1;
     justify-content: center;
+    align-items: center;
 
-    padding: 20px;
+    padding: 5px;
+    display: flex;
 }
 
-input{
-    font-size: 20px;    
+.info-item {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 
-    width: 300px;
-    height: 30px;
-
-    border-radius: 5px;
-    padding: 5px 10px;
+    color: black;
 }
 
-button{
-    font-size: 20px;
+.info-item:not(:last-child) {
+    margin-right: 10px;
+}
 
-    border-radius: 5px;
-    padding: 5px 15px;
+a{
+    text-decoration: none;
+
+    width: 100%;
+    display: block;
 }

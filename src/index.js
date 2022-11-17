@@ -1,8 +1,9 @@
-//import axios from 'axios';
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
-import {getData} from './api_service';
-//import { createMarkup } from './createmarkup';
+import API from './api_service';
+import { createMarkUp } from './createMarkUp';
 
 const refs = {
   form: document.querySelector('.search-form'),
@@ -19,9 +20,9 @@ let page = 1;
 
 function onSubmit(e) {
   e.preventDefault();
-  const value = refs.input.value;
+  const value = refs.form.elements.searchQuery.value;
   refs.gallery.innerHTML = '';
-  getData(value, page).then(data => {
+  API.getData(value, page).then(data => {
     page = 1;
     if (data.data.hits.length === 0) {
       Notiflix.Notify.warning(
@@ -30,5 +31,26 @@ function onSubmit(e) {
       return;
     }
     Notiflix.Notify.success(`Hooray! We found ${data.data.totalHits} images.`);
+    createMarkUp(data.data.hits, refs.gallery);
+    lightbox.refresh();
+    observer.observe(refs.gallery.lastElementChild);
   });
 }
+
+let lightbox = new SimpleLightbox('.gallery a');
+
+const observer = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        page += 1;
+        const value = refs.input.value;
+        getData(value, page).then(data => {
+          createMarkup(data.data.hits, refs.gallery);
+          lightbox.refresh();
+          observer.observe(refs.gallery.lastElementChild);
+        });
+      }
+    });
+  },
+);
