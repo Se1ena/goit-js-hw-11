@@ -9,12 +9,14 @@ const refs = {
   form: document.querySelector('.search-form'),
   input: document.querySelector('input'),
   gallery: document.querySelector('.gallery'),
+  loadMoreBtn: document.querySelector('.load-more'),
 };
 
 refs.form.addEventListener('submit', onSubmit);
 refs.gallery.addEventListener('click', e => {
   e.preventDefault();
 });
+refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 let page = 1;
 
@@ -42,18 +44,24 @@ function onSubmit(e) {
 
 let lightbox = new SimpleLightbox('.gallery a');
 
-const observer = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        page += 1;
-        const value = refs.input.value;
-        getData(value, page).then(data => {
-          createMarkup(data.data.hits, refs.gallery);
-          lightbox.refresh();
-          observer.observe(refs.gallery.lastElementChild);
-        });
-      }
-    });
-  },
-);
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      page += 1;
+      const value = refs.form.elements.searchQuery.value;
+      API.getData(value, page).then(data => {
+        if (data.data.hits.length === 0) {
+          Notiflix.Notify.warning(
+            "We're sorry, but you've reached the end of search results."
+          );
+          return;
+        }
+        createMarkUp(data.data.hits, refs.gallery);
+        lightbox.refresh();
+        observer.observe(refs.gallery.lastElementChild);
+      });
+    }
+  });
+});
+
+function onLoadMore(){}
