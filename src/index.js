@@ -33,7 +33,10 @@ function onSubmit(e) {
     Notiflix.Notify.success(`Hooray! We found ${data.data.totalHits} images.`);
     createMarkUp(data.data.hits, refs.gallery);
     lightbox.refresh();
-    observer.observe(refs.gallery.lastElementChild);
+    observer.observe(refs.gallery.lastElementChild);   
+    if (createMarkUp) {
+      e.target.reset();
+    }
   });
 }
 
