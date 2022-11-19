@@ -3,7 +3,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import API from './api_service';
-import { createMarkUp } from './createMarkUp';
+import { createMarkUp } from './createmarkup';
 
 const refs = {
   form: document.querySelector('.search-form'),
