@@ -14,14 +14,24 @@ input {
   height: 30px;
 
   border-radius: 5px;
+  border-color: black;
+
   padding: 5px 10px;
+  margin-right: 5px;
 }
 
 button {
   font-size: 20px;
 
   border-radius: 5px;
+  background-color: yellow;
+
   padding: 5px 15px;
+}
+
+button:hover,
+button:focus {
+  background-color: blue;
 }
 
 .gallery {
@@ -34,46 +44,50 @@ button {
 }
 
 .photo-card {
-  border: solid gray;
-  box-shadow: 3px 5px 2px 1px rgba(90, 46, 193, 0.29);
+  border: solid rgba(255, 255, 0, 0.416);
+  box-shadow: 4px 5px 2px 1px rgba(0, 0, 255, 0.525);
 
   flex-basis: 20%;
 }
 
 img {
-    display: block;
-    max-width: 100%;
+  display: block;
+  width: 520px;
+  height: 350px;
 
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .info {
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
 
-    padding: 5px;
-    display: flex;
+  padding: 5px;
+  display: flex;
 }
 
 .info-item {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+  font-size: 23px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
-    color: black;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  color: black;
 }
 
 .info-item:not(:last-child) {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }

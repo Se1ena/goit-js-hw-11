@@ -34,6 +34,9 @@ function onSubmit(e) {
     createMarkUp(data.data.hits, refs.gallery);
     lightbox.refresh();
     observer.observe(refs.gallery.lastElementChild);
+    //if (createMarkUp) {
+      //refs.form.value.reset();
+    //}
   });
 }
 
