@@ -9,14 +9,12 @@ const refs = {
   form: document.querySelector('.search-form'),
   input: document.querySelector('input'),
   gallery: document.querySelector('.gallery'),
-  loadMoreBtn: document.querySelector('.load-more'),
 };
 
 refs.form.addEventListener('submit', onSubmit);
 refs.gallery.addEventListener('click', e => {
   e.preventDefault();
 });
-refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 let page = 1;
 
@@ -35,10 +33,7 @@ function onSubmit(e) {
     Notiflix.Notify.success(`Hooray! We found ${data.data.totalHits} images.`);
     createMarkUp(data.data.hits, refs.gallery);
     lightbox.refresh();
-    observer.observe(refs.gallery.lastElementChild);   
-    if (createMarkUp) {
-      e.target.reset();
-    }
+    observer.observe(refs.gallery.lastElementChild);
   });
 }
 
@@ -63,5 +58,3 @@ const observer = new IntersectionObserver((entries, observer) => {
     }
   });
 });
-
-function onLoadMore(){}
